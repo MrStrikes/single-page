@@ -34,7 +34,7 @@ window.onload = function(){
 
 function storeDatas(key, data){
     sessionStorage.setItem(key, JSON.stringify(data));
-    localStorage.setItem(key, data);
+    localStorage.setItem(key, JSON.stringify(data));
 }
 
 function getSessionStorage(key){
@@ -47,9 +47,9 @@ function getLocalStorage(key){
 
 function updateStorages(key, data){
     sessionStorage.removeItem(key);
-    sessionStorage.setItem(key, data);
+    sessionStorage.setItem(key, JSON.stringify(data));
     localStorage.removeItem(key);
-    localStorage.setItem(key, data);
+    localStorage.setItem(key, JSON.stringify(data));
 }
 
 function callAjax(filename){
