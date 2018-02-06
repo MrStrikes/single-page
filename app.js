@@ -1,5 +1,12 @@
 window.onload = function(){
-    
+    var username = document.querySelector(".usr");
+    var pwd = document.querySelector(".pwd");
+    var regForm = document.querySelector('.reg-form');
+    var links = document.querySelectorAll('.link');
+    for(var i in links){
+        var linkToPage = 'templates/login.html';
+        loadPage(links[i], linkToPage);
+    }
 }
 
 function callAjax(filename){
@@ -13,4 +20,10 @@ function callAjax(filename){
         }
     };
     xhr.send();
+}
+
+function loadPage(page, fileName){
+    page.onclick = function(){
+        callAjax(fileName)
+    }
 }
