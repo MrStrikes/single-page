@@ -32,6 +32,26 @@ window.onload = function(){
     }
 }
 
+function storeDatas(key, data){
+    sessionStorage.setItem(key, JSON.stringify(data));
+    localStorage.setItem(key, data);
+}
+
+function getSessionStorage(key){
+    sessionStorage.getItem(JSON.parse(key));
+}
+
+function getLocalStorage(key){
+    localStorage.getItem(JSON.parse(key));
+}
+
+function updateStorages(key, data){
+    sessionStorage.removeItem(key);
+    sessionStorage.setItem(key, data);
+    localStorage.removeItem(key);
+    localStorage.setItem(key, data);
+}
+
 function callAjax(filename){
     var xhr = new XMLHttpRequest();
     xhr.open('GET', encodeURI(filename));
