@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 h1{text-align: center;}
+#manager, #logout{display: none;}
 html, body, div, span, applet, object, iframe, p, 
 blockquote, pre, a, abbr, acronym, address,
 big, cite, code, del, dfn, em, img, ins, kbd,
@@ -24,8 +25,4 @@ header{
     flex-direction: row;
     background: #703e6f;
     justify-content: space-around;
-}
-
-#manager{
-    display: none;
 }
