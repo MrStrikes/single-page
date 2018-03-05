@@ -6,9 +6,14 @@ window.onload = function(){
     var logout = 'templates/logout.html';
     var homepage = 'templates/homepage.html';
     load(homepage, main);
+    if(sessionStorage.getItem('username') || sessionStorage.getItem('password') !== null){
+        console.log('ui');
+        var oui = document.querySelector('#register');
+        console.log(oui)
+        oui.style.display = 'none'
+    }
     for(var i in links){
-        var loginLoad = load(links[i], loginPage);
-        loginLoad = links.item(2);
+        var loginLoad = links.item(2);
         loginLoad.onclick = function(){
             load(loginPage, main);
             document.forms['login-form'].onsubmit = function(){
@@ -27,8 +32,7 @@ window.onload = function(){
                 return false;
             }
         }
-        var registerLoad = load(links[i], registerPage); 
-        registerLoad = links.item(1);
+        var registerLoad = links.item(1);
         registerLoad.onclick = function(){
             load(registerPage, main);
             document.forms['reg-form'].onsubmit = function(){
@@ -38,9 +42,8 @@ window.onload = function(){
                 registerUser('password', password);
                 return false;
             }
-        } 
-        var homepageLoad = load(links[i], homepage); 
-        homepageLoad = links.item(0);
+        }
+        var homepageLoad = links.item(0);
         homepageLoad.onclick = function(){
             load(homepage, main);
         }
