@@ -14,7 +14,16 @@ window.onload = function(){
             document.forms['login-form'].onsubmit = function(){
                 var username = this.elements['usr'].value;
                 var password = this.elements['pwd'].value;
-                storeDatas('user', username);
+                /* ----------------------------------- */
+                var userLog = localStorage.getItem('username');
+                var pwdLog = localStorage.getItem('password');
+                if(username === userLog && password === pwdLog){
+                    alert('Salut !');
+                    loginUser('username', username);
+                    loginUser('password', password);
+                } else {
+                    alert('Error');
+                }
                 return false;
             }
         }
@@ -25,8 +34,8 @@ window.onload = function(){
             document.forms['reg-form'].onsubmit = function(){
                 var username = this.elements['user'].value;
                 var password = this.elements['pass'].value;
-                storeDatas('username', username);
-                storeDatas('password', password);
+                registerUser('username', username);
+                registerUser('password', password);
                 return false;
             }
         } 
@@ -38,23 +47,16 @@ window.onload = function(){
     }
 }
 
-function storeDatas(key, data){
-    sessionStorage.setItem(key, JSON.stringify(data));
-    localStorage.setItem(key, JSON.stringify(data));
+function registerUser(key, data){
+    localStorage.setItem(key, data);
 }
 
-function getSessionStorage(key){
-    sessionStorage.getItem(JSON.parse(key));
-}
-
-function getLocalStorage(key){
-    localStorage.getItem(JSON.parse(key));
+function loginUser(key, data){
+    sessionStorage.setItem(key, data);
 }
 
 function updateStorages(key, data){
-    sessionStorage.removeItem(key);
     sessionStorage.setItem(key, JSON.stringify(data));
-    localStorage.removeItem(key);
     localStorage.setItem(key, JSON.stringify(data));
 }
 
