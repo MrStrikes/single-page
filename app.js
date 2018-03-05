@@ -8,26 +8,27 @@ window.onload = function(){
     var registerPage = 'templates/register.html';
     var logout = 'templates/logout.html';
     var homepage = 'templates/homepage.html';
-    $('main').load(homepage);
+    main.innerHTML = '';
+    main.innerHTML = '<object class="datas" type="text/html" data="'+homepage+'"></object>';
     console.log(links);
     for(var i in links){
         var loginLoad = loadPage(links[i], loginPage);
         loginLoad = links.item(2);
         loginLoad.onclick = function(){
-            $('main').text('');
-            $('main').load(loginPage);
+            main.innerHTML = '';
+            main.innerHTML = '<object class="datas" type="text/html" data="'+loginPage+'" width="auto"></object>';
         }
         var registerLoad = loadPage(links[i], registerPage); 
         registerLoad = links.item(1);
         registerLoad.onclick = function(){
-            $('main').text('');
-            $('main').load(registerPage);
+            main.innerHTML = '';
+            main.innerHTML = '<object class="datas" type="text/html" data="'+registerPage+'" width="auto"></object>';
         }
         var homepageLoad = loadPage(links[i], homepage); 
         homepageLoad = links.item(0);
         homepageLoad.onclick = function(){
-            $('main').text('');
-            $('main').load(homepage);
+            main.innerHTML = '';
+            main.innerHTML = '<object class="datas" type="text/html" data="'+homepage+'"></object>';
         }
     }
 }
