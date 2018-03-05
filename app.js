@@ -5,12 +5,24 @@ window.onload = function(){
     var registerPage = 'templates/register.html';
     var logout = 'templates/logout.html';
     var homepage = 'templates/homepage.html';
+    var manager = 'templates/datas.html';
     load(homepage, main);
     if(sessionStorage.getItem('username') || sessionStorage.getItem('password') !== null){
         var registerLoggedIn = document.querySelector('#register');
         var loggedIn = document.querySelector('#login');
         registerLoggedIn.style.display = 'none';
         loggedIn.style.display = 'none';
+        var managerTemplateBtn = document.querySelector('#manager');
+        managerTemplateBtn.style.display = 'inherit';
+        var managerLoad = links.item(3);
+        managerLoad.onclick = function(){
+        load(manager, main);
+        document.forms['rename-username'].onsubmit = function(){
+            var newUsername = this.elements['new-username'].value;
+            updateStorages('username', newUsername);
+            return false;
+            }
+        }
     }
     for(var i in links){
         var loginLoad = links.item(2);
@@ -23,14 +35,23 @@ window.onload = function(){
                 var userLog = localStorage.getItem('username');
                 var pwdLog = localStorage.getItem('password');
                 if(username === userLog && password === pwdLog){
-                    alert('Salut !');
+                    alert('Salut '+username+' !');
                     loginUser('username', username);
                     loginUser('password', password);
-                    var registerLoggedIn = document.querySelector('#register');
-                    var loggedIn = document.querySelector('#login');
-                    registerLoggedIn.style.display = 'none';
-                    loggedIn.style.display = 'none';
-                    load(homepage, main);
+                        registerLoggedIn.style.display = 'none';
+                        loggedIn.style.display = 'none';
+                        load(homepage, main);
+                        var managerTemplateBtn = document.querySelector('#manager');
+                        managerTemplateBtn.style.display = 'inherit';
+                        var managerLoad = links.item(3);
+                        managerLoad.onclick = function(){
+                            load(manager, main);
+                            document.forms['rename-username'].onsubmit = function(){
+                                var newUsername = this.elements['new-username'].value;
+                                updateStorages('username', newUsername);
+                                return false;
+                            }
+                        }
                 } else {
                     alert('Error');
                 }
@@ -64,12 +85,16 @@ function loginUser(key, data){
 }
 
 function updateStorages(key, data){
-    sessionStorage.setItem(key, JSON.stringify(data));
-    localStorage.setItem(key, JSON.stringify(data));
+    sessionStorage.setItem(key, data);
+    localStorage.setItem(key, data);
 }
 
-function load(url, element)
-{
+function deleteStorages(key){
+    sessionStorage.removeItem(key);
+    localStorage.removeItem(key);
+}
+
+function load(url, element){
     req = new XMLHttpRequest();
     req.open("GET", url, false);
     req.send(null);
