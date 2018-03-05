@@ -16,7 +16,7 @@ time, mark, audio, video {
     font-size: 100%;
 }
 
-header{
+header{ 
     display: flex;
     flex-direction: row;
     background: #703e6f;
