@@ -26,13 +26,11 @@ window.onload = function(){
                     alert('Salut !');
                     loginUser('username', username);
                     loginUser('password', password);
-                    if(sessionStorage.getItem('username') || sessionStorage.getItem('password') !== null){
-                        var registerLoggedIn = document.querySelector('#register');
-                        var loggedIn = document.querySelector('#login');
-                        registerLoggedIn.style.display = 'none';
-                        loggedIn.style.display = 'none';
-                        load(homepage, main);
-                    }
+                    var registerLoggedIn = document.querySelector('#register');
+                    var loggedIn = document.querySelector('#login');
+                    registerLoggedIn.style.display = 'none';
+                    loggedIn.style.display = 'none';
+                    load(homepage, main);
                 } else {
                     alert('Error');
                 }
