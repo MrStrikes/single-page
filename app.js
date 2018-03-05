@@ -7,10 +7,10 @@ window.onload = function(){
     var homepage = 'templates/homepage.html';
     load(homepage, main);
     if(sessionStorage.getItem('username') || sessionStorage.getItem('password') !== null){
-        console.log('ui');
-        var oui = document.querySelector('#register');
-        console.log(oui)
-        oui.style.display = 'none'
+        var registerLoggedIn = document.querySelector('#register');
+        var loggedIn = document.querySelector('#login');
+        registerLoggedIn.style.display = 'none';
+        loggedIn.style.display = 'none';
     }
     for(var i in links){
         var loginLoad = links.item(2);
@@ -26,6 +26,13 @@ window.onload = function(){
                     alert('Salut !');
                     loginUser('username', username);
                     loginUser('password', password);
+                    if(sessionStorage.getItem('username') || sessionStorage.getItem('password') !== null){
+                        var registerLoggedIn = document.querySelector('#register');
+                        var loggedIn = document.querySelector('#login');
+                        registerLoggedIn.style.display = 'none';
+                        loggedIn.style.display = 'none';
+                        load(homepage, main);
+                    }
                 } else {
                     alert('Error');
                 }
