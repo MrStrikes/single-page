@@ -30,6 +30,18 @@ window.onload = function(){
             return false;
             }
         }
+        logoutAction.onclick = function(){
+            alert('You have successfully been logged out');
+            deleteStorage('username');
+            deleteStorage('password');
+            load(homepage, main);
+            managerTemplateBtn.style.display = 'none';
+            logoutBtn.style.display = 'none';
+            loggedIn.style.display = 'inherit';
+            registerLoggedIn.style.display = 'inherit';
+            saluteUser.style.display = 'none';
+            return false;
+        }
     }
     var loginLoad = links.item(2);
     loginLoad.onclick = function(){
