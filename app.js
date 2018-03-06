@@ -8,6 +8,8 @@ window.onload = function(){
     var manager = 'templates/datas.html';
     load(homepage, main);
     if(sessionStorage.getItem('username') || sessionStorage.getItem('password') !== null){
+        var saluteUser = document.querySelector('#hello-username');
+        saluteUser.innerHTML = 'Hello '+sessionStorage.getItem('username');
         var registerLoggedIn = document.querySelector('#register');
         var loggedIn = document.querySelector('#login');
         registerLoggedIn.style.display = 'none';
@@ -22,21 +24,19 @@ window.onload = function(){
         load(manager, main);
         document.forms['rename-username'].onsubmit = function(){
             var newUsername = this.elements['new-username'].value;
+            alert('You succesfully changed '+sessionStorage.getItem('username')+' for the username '+newUsername);
             updateStorages('username', newUsername);
+            saluteUser.innerHTML = 'Hello '+sessionStorage.getItem('username');
             return false;
             }
-        }
-        logoutAction.onclick = function(){
-            deleteStorage('username');
-            deleteStorage('password');
-            load(homepage, main);
-            return false;
         }
     }
     var loginLoad = links.item(2);
     loginLoad.onclick = function(){
         load(loginPage, main);
         document.forms['login-form'].onsubmit = function(){
+            var saluteUser = document.querySelector('#hello-username');
+            saluteUser.innerHTML = 'Hello '+sessionStorage.getItem('username');
             var username = this.elements['usr'].value;
             var password = this.elements['pwd'].value;
             /* ----------------------------------- */
@@ -46,6 +46,7 @@ window.onload = function(){
                 alert('Salut '+username+' !');
                 loginUser('username', username);
                 loginUser('password', password);
+                saluteUser.innerHTML = 'Hello '+sessionStorage.getItem('username');
                 var registerLoggedIn = document.querySelector('#register');
                 var loggedIn = document.querySelector('#login');
                 registerLoggedIn.style.display = 'none';
@@ -61,11 +62,14 @@ window.onload = function(){
                     load(manager, main);
                     document.forms['rename-username'].onsubmit = function(){
                         var newUsername = this.elements['new-username'].value;
+                        alert('You succesfully changed '+username+' for '+newUsername);
                         updateStorages('username', newUsername);
+                        saluteUser.innerHTML = 'Hello '+sessionStorage.getItem('username');
                         return false;
                     }
                 }
                 logoutAction.onclick = function(){
+                    alert('You have successfully been logged out');
                     deleteStorage('username');
                     deleteStorage('password');
                     load(homepage, main);
@@ -73,10 +77,11 @@ window.onload = function(){
                     logoutBtn.style.display = 'none';
                     loggedIn.style.display = 'inherit';
                     registerLoggedIn.style.display = 'inherit';
+                    saluteUser.style.display = 'none';
                     return false;
                 }
             } else {
-                alert('Error');
+                alert('There is an error during the login process.It\'s maybe due to the creditentials you\'ve given');
             }
             return false;
         }
@@ -87,6 +92,7 @@ window.onload = function(){
         document.forms['reg-form'].onsubmit = function(){
             var username = this.elements['user'].value;
             var password = this.elements['pass'].value;
+            alert('Welcome to this super single-page website !')
             registerUser('username', username);
             registerUser('password', password);
             return false;
